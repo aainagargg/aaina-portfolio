@@ -1,172 +1,130 @@
-import {
-  person,
-  education,
-  distinctions,
-  clubLeadership,
-  skills,
-  buildWork,
-  thinkWork,
-  press,
-  beyondWork,
-} from "@/content/profile";
+import Link from "next/link";
+import { person, education, buildWork, thinkWork, beyondWork, distinctions } from "@/content/profile";
+import { Reveal } from "./components/Reveal";
+import { StatBand } from "./components/StatBand";
+import { DomainIcon } from "./components/DomainIcon";
+import { JourneyRoad } from "./components/JourneyRoad";
 
-// NOTE: this is a deliberately plain baseline. Structure and content are
-// complete and correct — pulled straight from content/profile.ts — but the
-// visual design here is a placeholder, not a finished direction. See
-// CLAUDE.md for the actual design brief before shipping this.
+const heroStats = [
+  { value: 60, suffix: "k+", label: "people using systems I've shipped" },
+  { value: 96, suffix: "%+", label: "detection accuracy, production CV pipeline" },
+  { value: buildWork.length, suffix: "+", label: "shipped ML and product builds" },
+  { value: distinctions.length, suffix: "+", label: "selective fellowships and programs" },
+];
+
+const lenses = [
+  {
+    href: "/research",
+    label: "Research",
+    accent: "pulse" as const,
+    teaser: "AI governance and safety work, at Sentient Futures, Cohumain Labs, and IIT Delhi.",
+  },
+  {
+    href: "/technical",
+    label: "Technical",
+    accent: "signal" as const,
+    teaser: "Production ML I've shipped, at Arcadis, Google DeepMind, and Cash App.",
+  },
+  {
+    href: "/fellowships",
+    label: "Fellowships",
+    accent: "econ" as const,
+    teaser: "The selective programs, and what I built inside each one.",
+  },
+  {
+    href: "/community",
+    label: "Community",
+    accent: "pulse" as const,
+    teaser: "The clubs I lead, founded, and organize outside of work.",
+  },
+];
 
 export default function Home() {
   return (
-    <main className="mx-auto max-w-3xl px-6 py-16 leading-relaxed">
-      {/* Hero */}
-      <section className="mb-20">
-        <p className="text-sm text-gray-500 mb-3">{person.location}</p>
-        <h1 className="text-4xl font-semibold mb-6 leading-tight">
-          {person.name}
-        </h1>
-        <p className="text-xl text-gray-700 max-w-xl">{person.tagline}</p>
-        <p className="mt-4 text-sm text-gray-500">
-          {education.program} · {education.school}, {education.expected}
-        </p>
+    <main id="top" className="mx-auto max-w-5xl px-6">
+      <section className="pt-16 pb-24 sm:pt-24 sm:pb-32">
+        <Reveal>
+          <p className="font-mono text-sm text-muted">{person.location}</p>
+        </Reveal>
+        <Reveal delay={100}>
+          <h1 className="mt-4 font-display text-5xl font-bold leading-[0.95] tracking-tight text-ink sm:text-7xl">
+            Hi, I&rsquo;m {person.name.split(" ")[0]}.
+          </h1>
+        </Reveal>
+        <Reveal delay={200}>
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink/85 sm:text-xl">
+            I&rsquo;m a Computer Science and Economics student at the{" "}
+            {education.school} who ended up chasing the same question from
+            two directions: how do you actually ship an AI system at scale,
+            and how do you know whether you{" "}
+            <em className="font-accent not-italic italic text-pulse">should</em> have
+            shipped it at all. Right now that means a seat on the AI team at{" "}
+            {buildWork[0].org}, a research fellowship with {thinkWork[0].org}, and
+            an internship at {thinkWork[1].org}, on top of selective stints
+            at Google DeepMind, Cash App, and RBC Borealis.
+          </p>
+        </Reveal>
+        <Reveal delay={300} className="mt-20 rounded-3xl border border-line bg-surface/60 bg-glow-pulse p-8 sm:p-12">
+          <StatBand stats={heroStats} />
+        </Reveal>
       </section>
 
-      {/* Build */}
-      <section className="mb-20">
-        <h2 className="text-2xl font-semibold mb-8 border-b pb-2">Build</h2>
-        <div className="space-y-10">
-          {buildWork.map((item) => (
-            <article key={item.slug}>
-              <p className="text-sm text-gray-500 mb-1">
-                {item.org} · {item.dates}
-              </p>
-              <h3 className="text-lg font-medium mb-2">{item.title}</h3>
-              <p className="text-gray-700 mb-3">{item.description}</p>
-              {item.metrics.length > 0 && (
-                <ul className="flex flex-wrap gap-x-6 gap-y-1 text-sm text-gray-600 mb-2">
-                  {item.metrics.map((m) => (
-                    <li key={m}>{m}</li>
-                  ))}
-                </ul>
-              )}
-              <p className="text-xs text-gray-400">{item.stack.join(" · ")}</p>
-              {item.orgUrl && (
-                <a
-                  href={item.orgUrl}
-                  target="_blank"
-                  rel="noopener"
-                  className="text-sm underline text-gray-600"
-                >
-                  {item.org} ↗
-                </a>
-              )}
-            </article>
+      <section className="border-t border-line py-16">
+        <Reveal>
+          <p className="font-mono text-sm text-signal">Currently</p>
+          <p className="mt-3 max-w-xl text-lg text-ink/85">
+            Shipping the AI intake tool at Arcadis. Building a
+            sentience-aware LLM evaluation toolkit for Sentient Futures.
+            Writing on Building Out Loud in between. Based in Toronto,
+            graduating spring 2027.
+          </p>
+        </Reveal>
+      </section>
+
+      <section className="border-t border-line py-16">
+        <Reveal>
+          <h2 className="font-display text-2xl font-bold text-ink">Pick a lens</h2>
+          <p className="mt-2 text-muted">Four sides of the same person. Start wherever you want.</p>
+        </Reveal>
+        <div className="mt-10 grid gap-4 sm:grid-cols-2">
+          {lenses.map((l, i) => (
+            <Reveal key={l.href} delay={i * 70}>
+              <Link
+                href={l.href}
+                className="focus-ring group flex items-start gap-4 rounded-2xl border border-line bg-surface p-6 transition-colors hover:border-pulse/40"
+              >
+                <DomainIcon domain={l.accent} className="h-9 w-9 shrink-0" />
+                <div>
+                  <p className="font-display text-lg font-semibold text-ink group-hover:text-pulse">
+                    {l.label} →
+                  </p>
+                  <p className="mt-1 text-sm text-muted">{l.teaser}</p>
+                </div>
+              </Link>
+            </Reveal>
           ))}
         </div>
       </section>
 
-      {/* Think */}
-      <section className="mb-20">
-        <h2 className="text-2xl font-semibold mb-8 border-b pb-2">Think</h2>
-        <div className="space-y-10">
-          {thinkWork.map((item) => (
-            <article key={item.slug}>
-              <p className="text-sm text-gray-500 mb-1">
-                {item.org} · {item.dates}
-              </p>
-              <h3 className="text-lg font-medium mb-2">{item.title}</h3>
-              <p className="text-gray-700 mb-2">{item.description}</p>
-              {item.orgUrl && (
-                <a
-                  href={item.orgUrl}
-                  target="_blank"
-                  rel="noopener"
-                  className="text-sm underline text-gray-600"
-                >
-                  {item.org} ↗
-                </a>
-              )}
-            </article>
-          ))}
-        </div>
-        {press.length > 0 && (
-          <div className="mt-8">
-            <p className="text-sm text-gray-500 mb-2">Press &amp; features</p>
-            <ul className="space-y-1">
-              {press.map((p) => (
-                <li key={p.url}>
-                  <a href={p.url} className="underline text-sm">
-                    {p.label} ↗
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+      <section className="border-t border-line py-16">
+        <Reveal>
+          <h2 className="font-display text-2xl font-bold text-ink">The road so far</h2>
+          <p className="mt-2 max-w-lg text-muted">
+            Working backward from right now to first year, one stop at a time.
+          </p>
+        </Reveal>
+        <Reveal delay={100} className="mt-10">
+          <JourneyRoad />
+        </Reveal>
+        <Reveal delay={150} className="mt-8 text-center">
+          <Link
+            href="/journey"
+            className="focus-ring inline-block rounded-full border border-line px-5 py-2.5 text-sm font-medium text-ink transition-colors hover:border-econ/50 hover:text-econ"
+          >
+            See the full journey ↗
+          </Link>
+        </Reveal>
       </section>
-
-      {/* Beyond the build */}
-      <section className="mb-20">
-        <h2 className="text-2xl font-semibold mb-8 border-b pb-2">
-          Beyond the build
-        </h2>
-        <div className="space-y-10 mb-10">
-          {beyondWork.map((item) => (
-            <article key={item.org}>
-              <p className="text-sm text-gray-500 mb-1">
-                {item.role} · {item.dates}
-              </p>
-              <h3 className="text-lg font-medium mb-2">{item.org}</h3>
-              <p className="text-gray-700">{item.description}</p>
-            </article>
-          ))}
-        </div>
-        <div>
-          <p className="text-sm text-gray-500 mb-2">Leadership</p>
-          <ul className="space-y-1 text-gray-700">
-            {clubLeadership.map((c) => (
-              <li key={c.org}>
-                {c.role}, {c.org}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* Distinctions */}
-      <section className="mb-20">
-        <h2 className="text-2xl font-semibold mb-8 border-b pb-2">
-          Distinctions
-        </h2>
-        <ul className="space-y-2 text-gray-700">
-          {distinctions.map((d) => (
-            <li key={d}>{d}</li>
-          ))}
-        </ul>
-      </section>
-
-      {/* Skills */}
-      <section className="mb-20">
-        <h2 className="text-2xl font-semibold mb-8 border-b pb-2">Skills</h2>
-        <p className="text-gray-700">
-          {skills.languagesAndTools.join(" · ")}
-        </p>
-      </section>
-
-      {/* Contact */}
-      <footer className="text-sm text-gray-500 space-x-4">
-        <a href={`mailto:${person.email}`} className="underline">
-          Email
-        </a>
-        <a href={person.links.linkedin} className="underline">
-          LinkedIn
-        </a>
-        <a href={person.links.github} className="underline">
-          GitHub
-        </a>
-        <a href={person.links.substack} className="underline">
-          Substack
-        </a>
-      </footer>
     </main>
   );
 }

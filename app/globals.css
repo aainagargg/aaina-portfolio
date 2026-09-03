@@ -2,11 +2,43 @@
 @tailwind components;
 @tailwind utilities;
 
-/*
-  Starter typography only — pick real typefaces deliberately as part of
-  the redesign (see CLAUDE.md "Design direction"). This is a placeholder
-  system font stack so the baseline page isn't unstyled.
-*/
 html {
-  font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #09090F;
+  color: #F4F2ED;
+}
+
+::selection {
+  background-color: #FF7A3D;
+  color: #09090F;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.focus-ring {
+  outline: none;
+}
+.focus-ring:focus-visible {
+  outline: 2px solid #FF7A3D;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.ghost-text {
+  -webkit-text-stroke: 1px rgba(244, 242, 237, 0.14);
+  color: transparent;
 }
