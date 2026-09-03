@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  Starter typography only — pick real typefaces deliberately as part of
+  the redesign (see CLAUDE.md "Design direction"). This is a placeholder
+  system font stack so the baseline page isn't unstyled.
+*/
+html {
+  font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+}
