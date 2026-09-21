@@ -1,47 +1,38 @@
+import Image from "next/image";
+
 type Affiliation = {
   name: string;
-  initials: string;
-  accent: "signal" | "pulse" | "econ";
+  logo: string;
+  width: number;
 };
 
 const affiliations: Affiliation[] = [
-  { name: "University of Toronto", initials: "UT", accent: "econ" },
-  { name: "Arcadis", initials: "AR", accent: "signal" },
-  { name: "HotSpot", initials: "HS", accent: "signal" },
-  { name: "Google DeepMind", initials: "GD", accent: "pulse" },
-  { name: "RBC Borealis", initials: "RB", accent: "econ" },
-  { name: "AI4Good Lab", initials: "A4", accent: "pulse" },
-  { name: "Technology Leadership Initiative", initials: "TLI", accent: "econ" },
-  { name: "Vector Institute", initials: "VI", accent: "pulse" },
-  { name: "MILA", initials: "ML", accent: "pulse" },
-  { name: "CIFAR", initials: "CF", accent: "pulse" },
-  { name: "Cash App", initials: "CA", accent: "signal" },
-  { name: "Sentient Futures", initials: "SF", accent: "pulse" },
-  { name: "Cohumain Labs", initials: "CL", accent: "pulse" },
+  { name: "University of Toronto", logo: "/logos/uoft.svg", width: 22 },
+  { name: "Arcadis", logo: "/logos/arcadis.svg", width: 68 },
+  { name: "Google DeepMind", logo: "/logos/deepmind.svg", width: 92 },
+  { name: "RBC Borealis", logo: "/logos/rbc.svg", width: 32 },
+  { name: "Cash App", logo: "/logos/cashapp.svg", width: 28 },
+  { name: "Vector Institute", logo: "/logos/vector.png", width: 68 },
+  { name: "MILA", logo: "/logos/mila.png", width: 48 },
 ];
-
-const accentClasses: Record<Affiliation["accent"], string> = {
-  signal: "border-signal/30 text-signal group-hover:border-signal/60",
-  pulse: "border-pulse/30 text-pulse group-hover:border-pulse/60",
-  econ: "border-econ/30 text-econ group-hover:border-econ/60",
-};
 
 export function AffiliationStrip() {
   return (
-    <div className="flex flex-wrap gap-3">
+    <div className="flex flex-wrap items-center gap-3">
       {affiliations.map((a) => (
         <div
           key={a.name}
-          className="group flex items-center gap-2 rounded-full border border-line bg-surface/60 py-1.5 pl-1.5 pr-3 transition-colors hover:border-line"
+          title={a.name}
+          className="flex h-11 items-center justify-center rounded-xl border border-line bg-ink/95 px-4 transition-transform hover:-translate-y-0.5"
         >
-          <span
-            className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full border bg-void font-mono text-[10px] font-semibold transition-colors ${accentClasses[a.accent]}`}
-          >
-            {a.initials}
-          </span>
-          <span className="text-xs text-muted transition-colors group-hover:text-ink/80">
-            {a.name}
-          </span>
+          <Image
+            src={a.logo}
+            alt={a.name}
+            width={a.width}
+            height={22}
+            style={{ width: a.width, height: "auto", maxHeight: 20 }}
+            unoptimized
+          />
         </div>
       ))}
     </div>
