@@ -364,9 +364,9 @@ export const communityClubs: CommunityClub[] = [
   },
   {
     name: "UofT AI",
-    role: "Conference Associate (x3)",
+    role: "Conference Director",
     url: "https://www.uoft.ai/",
-    description: "The University of Toronto's leading student AI group. Collaborated to organize the annual AI conference with 450+ attendees across three years, bringing in speakers from Radical Ventures, Google, and OpenAI.",
+    description: "The University of Toronto's leading student AI group. Promoted to Conference Director after three years as Conference Associate, organizing the annual AI conference with 450+ attendees and speakers from Radical Ventures, Google, and OpenAI.",
     image: "/community/uoftai.png",
   },
   {
@@ -423,7 +423,7 @@ export type JourneyItem = {
 // A one-line highlight per academic year, shown above that year's group on
 // the Journey page. Most recent year first.
 export const yearHighlights: Record<JourneyYear, string> = {
-  "Year 4": "Opened the year with a global fellowship at Sentient Futures, researching how AI systems reason about moral status.",
+  "Year 4": "Opened the year with a global fellowship at Sentient Futures, researching how AI systems reason about moral status, and got promoted to Conference Director at UofT AI.",
   "Year 3": "Joined Arcadis's AI/Data team, started at Cohumain Labs, and consulted for RBC Borealis, on top of a fellowship at Google DeepMind.",
   "Year 2": "The year it compounded: led the LPR system redevelopment at HotSpot, co-founded Our Buddy AI, and founded Unicorn UofT, all while still full-time in class.",
   "Year 1": "Landed my first internship at Arcadis before the year was even over, while helping run CSSU and a peer study group on the side.",
@@ -432,6 +432,7 @@ export const yearHighlights: Record<JourneyYear, string> = {
 
 export const journey: JourneyItem[] = [
   { org: "Sentient Futures Project Incubator", role: "AI Governance Research Fellow", dates: "Aug 2026 – present", location: "Remote", description: "Building a Sentience-Aware LLM Evaluation Toolkit. Selected 1 of 190 mentees globally.", accent: "pulse", year: "Year 4" },
+  { org: "UofT AI", role: "Conference Director", dates: "Sep 2026 – present", location: "Toronto, ON", description: "Promoted after three years as Conference Associate. Now directing the annual AI conference with 450+ attendees.", accent: "econ", year: "Year 4" },
   { org: "Arcadis", role: "Data Science Intern, AI/Data team", dates: "Jan 2026 – present", location: "Toronto, ON", description: "First official member of Arcadis's Data and AI team from Canada. Shipped the AI intake tool used by 60,000 employees.", accent: "signal", year: "Year 3" },
   { org: "Cohumain Labs", role: "Applied Economics of AI Researcher", dates: "Apr 2026 – present", location: "Toronto, ON", description: "Co-developing a Return-on-Value-of-AI framework for EU AI Act compliance economics.", accent: "pulse", year: "Year 3" },
   { org: "RBC Borealis", role: "Machine Learning Researcher", dates: "Mar 2026 – May 2026", location: "Toronto, ON", description: "Assistive ML technology, via the Let's Solve It Fellowship. 1 of 35 selected nationally.", accent: "econ", year: "Year 3" },
@@ -445,7 +446,7 @@ export const journey: JourneyItem[] = [
   { org: "Indian Institute of Technology, Delhi", role: "AI Strategy & Research Intern", dates: "Jan 2025 – Sep 2025", description: "Focus on small language models and NLP research.", accent: "pulse", year: "Year 2" },
   { org: "UTMIST", role: "ML Project Developer", dates: "Oct 2024 – Mar 2025", location: "Toronto, ON", description: "External ML project in partnership with Lovelytics.", accent: "signal", year: "Year 2" },
   { org: "UofT Pilates & Yoga Club", role: "Founder & President", dates: "Feb 2024 – present", location: "Toronto, ON", description: "Scaled the club from 0 to 700+ members and 90K+ Instagram engagement.", accent: "econ", year: "Year 2" },
-  { org: "UofT AI", role: "Conference Associate", dates: "Nov 2023 – present", location: "Toronto, ON", description: "Organized the annual AI conference with 450+ attendees across three years.", accent: "econ", year: "Year 1" },
+  { org: "UofT AI", role: "Conference Associate", dates: "Nov 2023 – Aug 2026", location: "Toronto, ON", description: "Organized the annual AI conference with 450+ attendees across three years, before being promoted to Conference Director.", accent: "econ", year: "Year 1" },
   { org: "Cash App (Square)", role: "Student Machine Learning Engineer", dates: "Sep 2024 – Dec 2024", description: "Debiasing machine learning models, via UofT Technology Leadership Initiative.", accent: "signal", year: "Year 1" },
   { org: "Arcadis", role: "Business Analyst", dates: "May 2024 – Oct 2024", location: "Toronto, ON", description: "Enhanced TravelIQ/511 and automated client reporting. First internship, landed before first year was over.", accent: "signal", year: "Year 1" },
   { org: "Elite Wealth Ltd", role: "Equity Research Analyst", dates: "May 2024 – Jun 2024", location: "Delhi, India", description: "Prepared IPO notes and analyzed large portfolios (>$1M USD).", accent: "econ", year: "Year 1" },

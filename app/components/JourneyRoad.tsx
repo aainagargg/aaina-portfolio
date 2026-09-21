@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 type Pose = "mountain" | "warrior" | "reachup" | "star" | "triangle" | "forwardfold";
 type Accent = "signal" | "pulse" | "econ";
 
@@ -9,36 +11,32 @@ const accentHex: Record<Accent, string> = {
   econ: "#F5C451",
 };
 
-// One consistent template for every pose: a head, a straight spine, two
-// legs, two arms. Only the angles change. Keeping every figure this simple
-// is what makes each pose read clearly at small size — the earlier version
-// tried to be anatomically clever (bent knees, curved backs) and that
-// extra detail is exactly what made the poses hard to tell apart.
+// A chunky, filled "yoga buddy" body: round head, a thick capsule torso,
+// and pill-shaped limbs. Thin stick lines don't read as a body at this
+// size — a solid, rounded silhouette does, the way a fitness-app icon or
+// a trail-map figure would draw it.
 const POSE_LIMBS: Record<Pose, { legs: [string, string]; arms: [string, string] }> = {
-  mountain: { legs: ["14,44", "26,44"], arms: ["11,24", "29,24"] },
-  warrior: { legs: ["8,44", "32,44"], arms: ["2,14", "38,14"] },
-  star: { legs: ["6,44", "34,44"], arms: ["4,2", "36,2"] },
-  reachup: { legs: ["15,44", "25,44"], arms: ["10,-4", "30,-4"] },
-  triangle: { legs: ["10,44", "30,44"], arms: ["36,-2", "6,40"] },
-  forwardfold: { legs: ["4,44", "36,44"], arms: ["16,30", "24,30"] },
+  mountain: { legs: ["13,42", "27,42"], arms: ["9,22", "31,22"] },
+  warrior: { legs: ["5,42", "35,42"], arms: ["0,13", "40,13"] },
+  star: { legs: ["3,42", "37,42"], arms: ["1,0", "39,0"] },
+  reachup: { legs: ["14,42", "26,42"], arms: ["9,-6", "31,-6"] },
+  triangle: { legs: ["8,42", "32,42"], arms: ["38,-4", "3,38"] },
+  forwardfold: { legs: ["2,42", "38,42"], arms: ["14,28", "26,28"] },
 };
 
-function YogaFigure({ pose, color, x, y }: { pose: Pose; color: string; x: number; y: number }) {
+function YogaFigure({ pose, color }: { pose: Pose; color: string }) {
   const { legs, arms } = POSE_LIMBS[pose];
-  const common = {
-    fill: "none",
-    stroke: color,
-    strokeWidth: 4.5,
-    strokeLinecap: "round" as const,
-  };
-
   return (
-    <g transform={`translate(${x}, ${y}) scale(2)`}>
-      <circle cx="20" cy="8" r="5.5" {...common} />
-      <path
-        d={`M20,14 L20,28 M20,28 L${legs[0]} M20,28 L${legs[1]} M20,14 L${arms[0]} M20,14 L${arms[1]}`}
-        {...common}
-      />
+    <g strokeLinecap="round">
+      {/* limbs, drawn first so the torso sits on top */}
+      <line x1="20" y1="24" x2={legs[0].split(",")[0]} y2={legs[0].split(",")[1]} stroke={color} strokeWidth="7" />
+      <line x1="20" y1="24" x2={legs[1].split(",")[0]} y2={legs[1].split(",")[1]} stroke={color} strokeWidth="7" />
+      <line x1="20" y1="13" x2={arms[0].split(",")[0]} y2={arms[0].split(",")[1]} stroke={color} strokeWidth="6" />
+      <line x1="20" y1="13" x2={arms[1].split(",")[0]} y2={arms[1].split(",")[1]} stroke={color} strokeWidth="6" />
+      {/* torso */}
+      <line x1="20" y1="13" x2="20" y2="25" stroke={color} strokeWidth="13" />
+      {/* head */}
+      <circle cx="20" cy="7" r="7.5" fill={color} />
     </g>
   );
 }
@@ -52,16 +50,17 @@ type Stop = {
   date: string;
   org: string;
   role: string;
+  href: string;
 };
 
 // Most recent first, road runs top (now) to bottom (where it all started).
 const STOPS: Stop[] = [
-  { x: 150, y: 30, side: "right", pose: "star", accent: "pulse", date: "Now, 2026", org: "Sentient Futures", role: "AI Governance Fellow" },
-  { x: 78, y: 230, side: "right", pose: "warrior", accent: "signal", date: "2026", org: "Arcadis", role: "Data Science Intern" },
-  { x: 224, y: 430, side: "left", pose: "reachup", accent: "signal", date: "2025", org: "Google DeepMind", role: "AI Research Fellow" },
-  { x: 70, y: 630, side: "right", pose: "mountain", accent: "signal", date: "2025 · 2nd year", org: "HotSpot, Arcadis", role: "Led the LPR redevelopment" },
-  { x: 226, y: 830, side: "left", pose: "triangle", accent: "econ", date: "2024 · 1st year", org: "Arcadis", role: "First internship, landed" },
-  { x: 130, y: 1030, side: "right", pose: "forwardfold", accent: "econ", date: "2023", org: "University of Toronto", role: "Where it all started" },
+  { x: 150, y: 30, side: "right", pose: "star", accent: "pulse", date: "Now, 2026", org: "Sentient Futures", role: "AI Governance Fellow", href: "/research" },
+  { x: 78, y: 230, side: "right", pose: "warrior", accent: "signal", date: "2026", org: "Arcadis", role: "Data Science Intern", href: "/technical" },
+  { x: 224, y: 430, side: "left", pose: "reachup", accent: "signal", date: "2025", org: "Google DeepMind", role: "AI Research Fellow", href: "/technical" },
+  { x: 70, y: 630, side: "right", pose: "mountain", accent: "signal", date: "2025 · 2nd year", org: "HotSpot, Arcadis", role: "Led the LPR redevelopment", href: "/technical" },
+  { x: 226, y: 830, side: "left", pose: "triangle", accent: "econ", date: "2024 · 1st year", org: "Arcadis", role: "First internship, landed", href: "/technical" },
+  { x: 130, y: 1030, side: "right", pose: "forwardfold", accent: "econ", date: "2023", org: "University of Toronto", role: "Where it all started", href: "/journey" },
 ];
 
 const ROAD_PATH =
@@ -71,9 +70,9 @@ export function JourneyRoad() {
   return (
     <svg
       viewBox="0 -70 320 1220"
-      className="mx-auto w-full max-w-sm"
+      className="mx-auto w-full max-w-sm overflow-visible"
       role="img"
-      aria-label="An illustrated road showing the journey backward from current AI governance and engineering work to first year at university, marked by stick figures in yoga and pilates poses, with the road continuing beyond both ends"
+      aria-label="An illustrated road showing the journey backward from current AI governance and engineering work to first year at university, marked by yoga-pose figures. Each stop links to more detail."
     >
       <path d={ROAD_PATH} fill="none" stroke="#1C1B27" strokeWidth="34" strokeLinecap="round" />
       <path d={ROAD_PATH} fill="none" stroke="#948FA3" strokeWidth="2.5" strokeDasharray="9 11" opacity="0.5" />
@@ -95,9 +94,20 @@ export function JourneyRoad() {
       <path d="M144,1128 L150,1138 L156,1128" fill="none" stroke="#948FA3" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.6" />
 
       {STOPS.map((s) => (
-        <g key={s.org + s.date}>
-          <circle cx={s.x} cy={s.y} r="5" fill={accentHex[s.accent]} />
-          <YogaFigure pose={s.pose} color={accentHex[s.accent]} x={s.x - 20} y={s.y - 76} />
+        <Link key={s.org + s.date} href={s.href} className="group cursor-pointer">
+          <circle
+            cx={s.x}
+            cy={s.y}
+            r="6"
+            fill={accentHex[s.accent]}
+            className="origin-center transition-transform duration-200 group-hover:scale-125"
+          />
+          <g
+            transform={`translate(${s.x - 20}, ${s.y - 68})`}
+            className="origin-center transition-transform duration-200 group-hover:scale-110"
+          >
+            <YogaFigure pose={s.pose} color={accentHex[s.accent]} />
+          </g>
           <text
             x={s.side === "right" ? s.x + 34 : s.x - 34}
             y={s.y - 4}
@@ -112,12 +122,15 @@ export function JourneyRoad() {
             x={s.side === "right" ? s.x + 34 : s.x - 34}
             y={s.y + 12}
             textAnchor={s.side === "right" ? "start" : "end"}
-            className="font-display"
+            className="font-display transition-colors duration-200"
             fontSize="13"
             fontWeight="700"
             fill="#F4F2ED"
+            style={{ transition: "fill 200ms" }}
+            onPointerEnter={(e) => (e.currentTarget.style.fill = accentHex[s.accent])}
+            onPointerLeave={(e) => (e.currentTarget.style.fill = "#F4F2ED")}
           >
-            {s.org}
+            {s.org} {s.side === "right" ? "↗" : ""}
           </text>
           <text
             x={s.side === "right" ? s.x + 34 : s.x - 34}
@@ -128,7 +141,7 @@ export function JourneyRoad() {
           >
             {s.role}
           </text>
-        </g>
+        </Link>
       ))}
     </svg>
   );
