@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { person, education, buildWork, thinkWork, beyondWork, distinctions } from "@/content/profile";
+import { person, education, buildWork, thinkWork, beyondWork, distinctions, press } from "@/content/profile";
 import { Reveal } from "./components/Reveal";
 import { StatBand } from "./components/StatBand";
 import { DomainIcon } from "./components/DomainIcon";
@@ -67,6 +67,26 @@ export default function Home() {
         <Reveal delay={300} className="mt-20 rounded-3xl border border-line bg-surface/60 bg-glow-pulse p-8 sm:p-12">
           <StatBand stats={heroStats} />
         </Reveal>
+
+        {press.length > 0 && (
+          <Reveal delay={350} className="mt-8">
+            <div className="grid gap-4 sm:grid-cols-2">
+              {press.map((p) => (
+                <a
+                  key={p.url}
+                  href={p.url}
+                  target="_blank"
+                  rel="noopener"
+                  className="focus-ring group block rounded-2xl border border-line bg-surface p-5 transition-colors hover:border-pulse/40"
+                >
+                  <p className="font-mono text-xs text-muted">{p.publication} · {p.date}</p>
+                  <p className="mt-1 font-medium text-ink group-hover:text-pulse">{p.title} ↗</p>
+                  <p className="mt-2 text-sm italic text-ink/70">&ldquo;{p.quote}&rdquo;</p>
+                </a>
+              ))}
+            </div>
+          </Reveal>
+        )}
       </section>
 
       <section className="border-t border-line py-16">

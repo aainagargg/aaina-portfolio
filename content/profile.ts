@@ -261,12 +261,32 @@ export const thinkWork: ThinkItem[] = [
   },
 ];
 
-// Press / features — needs real URLs from Aaina before publishing.
-export const press: Link[] = [
-  // TODO: add the AI4Good feature link
-  // { label: "AI4Good Machine Learning Fellowship feature", url: "" },
-  // TODO: add the Indian financial press feature link
-  // { label: "Feature in [publication name]", url: "" },
+// Press / features.
+export type PressFeature = {
+  publication: string;
+  title: string;
+  date: string;
+  quote: string;
+  url: string;
+};
+
+export const press: PressFeature[] = [
+  {
+    publication: "Financial Express",
+    title: "Sarvam AI models excel in Indic, lag frontier systems",
+    date: "Mar 2026",
+    quote:
+      "This is a serious systems choice for long-context reasoning and inference efficiency. Sarvam isn't scaling parameters for the sake of it but making architectural choices around efficiency.",
+    url: "https://epaper.financialexpress.com/m5/4130306/Delhi/MARCH-19-2026#page/4/1",
+  },
+  {
+    publication: "Mila (Quebec AI Institute)",
+    title: "Designing the Future: Three AI4Good Lab Alumni on Belonging, Courage, and Building AI for Everyone",
+    date: "2026",
+    quote:
+      "Don't wait until you feel ready. Just start.",
+    url: "https://mila.quebec/en/news/three-ai4goodlab-alumni-on-belonging-courage-building-ai-for-everyone",
+  },
 ];
 
 // "Fellowships" — the selective programs, and the concrete deliverable

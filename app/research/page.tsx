@@ -77,15 +77,21 @@ export default function ResearchPage() {
         {press.length > 0 && (
           <Reveal>
             <h2 className="font-display text-xl font-semibold text-ink">In the press</h2>
-            <ul className="mt-4 space-y-2">
+            <div className="mt-4 space-y-4">
               {press.map((p) => (
-                <li key={p.url}>
-                  <a href={p.url} className="focus-ring text-ink underline decoration-line underline-offset-4 hover:text-pulse">
-                    {p.label} ↗
-                  </a>
-                </li>
+                <a
+                  key={p.url}
+                  href={p.url}
+                  target="_blank"
+                  rel="noopener"
+                  className="focus-ring block rounded-2xl border border-line bg-surface p-5 transition-colors hover:border-pulse/40"
+                >
+                  <p className="text-xs text-muted">{p.publication} · {p.date}</p>
+                  <p className="mt-1 font-medium text-ink">{p.title} ↗</p>
+                  <p className="mt-2 text-sm italic text-ink/70">&ldquo;{p.quote}&rdquo;</p>
+                </a>
               ))}
-            </ul>
+            </div>
           </Reveal>
         )}
       </div>
