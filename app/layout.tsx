@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { NavBar } from "./components/NavBar";
 import { Footer } from "./components/Footer";
+import { BackgroundFX } from "./components/BackgroundFX";
 import { person } from "@/content/profile";
 
 const fraunces = Fraunces({
@@ -92,6 +93,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }}
         />
+        <BackgroundFX />
         <NavBar />
         {children}
         <Footer />

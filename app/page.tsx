@@ -5,6 +5,7 @@ import { Reveal } from "./components/Reveal";
 import { StatBand } from "./components/StatBand";
 import { DomainIcon } from "./components/DomainIcon";
 import { SubstackScroller } from "./components/SubstackScroller";
+import { AffiliationStrip } from "./components/AffiliationStrip";
 
 const heroStats = [
   { value: 60, suffix: "k+", label: "people using systems I've shipped" },
@@ -101,6 +102,15 @@ export default function Home() {
             700+ members. Writing on Building Out Loud in between. Based in
             Toronto, graduating spring 2027.
           </p>
+        </Reveal>
+
+        <Reveal delay={280} className="mt-8">
+          <p className="font-mono text-xs uppercase tracking-wide text-muted">
+            Selected for, and worked with
+          </p>
+          <div className="mt-4">
+            <AffiliationStrip />
+          </div>
         </Reveal>
 
         <Reveal delay={300} className="mt-8 rounded-3xl border border-line bg-surface/60 bg-glow-pulse p-8 sm:p-12">
