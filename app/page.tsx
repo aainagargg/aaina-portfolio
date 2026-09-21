@@ -94,10 +94,12 @@ export default function Home() {
             <p className="font-mono text-sm font-medium text-signal">Currently</p>
           </div>
           <p className="mt-3 max-w-2xl text-lg text-ink/90">
-            Shipping the AI intake tool at {buildWork[0].org}. Researching
-            how AI systems reason about moral status at {thinkWork[0].org}.
-            Directing the annual conference at UofT AI. Writing on Building
-            Out Loud in between. Based in Toronto, graduating spring 2027.
+            On the Data and AI team at Arcadis. Researching AI governance
+            at Sentient Futures and applied AI economics at Cohumain Labs.
+            Directing the annual conference at UofT AI, and still running
+            UofT Pilates &amp; Yoga Club, which I founded and grew from 0 to
+            700+ members. Writing on Building Out Loud in between. Based in
+            Toronto, graduating spring 2027.
           </p>
         </Reveal>
 
