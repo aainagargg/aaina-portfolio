@@ -45,17 +45,13 @@ export default function Home() {
   return (
     <main id="top" className="mx-auto max-w-5xl px-6">
       <section className="pt-16 pb-24 sm:pt-24 sm:pb-32">
-        <div className="grid gap-10 sm:grid-cols-[1fr_auto] sm:items-start">
-          <div>
-            <Reveal>
+        <Reveal className="rounded-[2rem] border border-line bg-surface/50 p-6 sm:p-10">
+          <div className="grid gap-10 sm:grid-cols-[1fr_auto] sm:items-start">
+            <div>
               <p className="font-mono text-sm text-muted">{person.location}</p>
-            </Reveal>
-            <Reveal delay={100}>
               <h1 className="mt-4 font-display text-5xl font-bold leading-[0.95] tracking-tight text-ink sm:text-7xl">
                 Hi, I&rsquo;m {person.name.split(" ")[0]}.
               </h1>
-            </Reveal>
-            <Reveal delay={200}>
               <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink/85 sm:text-xl">
                 I&rsquo;m a Computer Science and Economics student at the{" "}
                 {education.school} who ended up chasing the same question from
@@ -67,10 +63,8 @@ export default function Home() {
                 an internship at {thinkWork[1].org}, on top of selective stints
                 at Google DeepMind, Cash App, and RBC Borealis.
               </p>
-            </Reveal>
-          </div>
-          <Reveal delay={150} className="order-first sm:order-none">
-            <div className="mx-auto w-56 sm:w-72">
+            </div>
+            <div className="order-first mx-auto sm:order-none">
               <div className="relative h-56 w-56 shrink-0 sm:h-72 sm:w-72">
                 <div className="absolute -inset-3 rounded-[2.5rem] bg-gradient-to-br from-signal/40 to-pulse/40 opacity-60 blur-xl" />
                 <div className="relative h-full w-full overflow-hidden rounded-[2rem] border border-line">
@@ -84,19 +78,20 @@ export default function Home() {
                   />
                 </div>
               </div>
-              <div className="mt-4">
-                <p className="text-center font-mono text-[11px] uppercase tracking-wide text-muted">
-                  Selected for, and worked with
-                </p>
-                <div className="mt-3 flex justify-center">
-                  <AffiliationStrip />
-                </div>
-              </div>
             </div>
-          </Reveal>
-        </div>
+          </div>
 
-        <Reveal delay={250} className="mt-12 rounded-3xl border border-signal/30 bg-surface bg-glow-signal p-6 sm:p-8">
+          <div className="mt-10 border-t border-line pt-6">
+            <p className="font-mono text-xs uppercase tracking-wide text-muted">
+              Selected for, and worked with
+            </p>
+            <div className="mt-4">
+              <AffiliationStrip />
+            </div>
+          </div>
+        </Reveal>
+
+        <Reveal delay={250} className="mt-8 rounded-3xl border border-signal/30 bg-surface bg-glow-signal p-6 sm:p-8">
           <div className="flex items-center gap-2">
             <span className="relative flex h-2.5 w-2.5">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-signal opacity-75" />
