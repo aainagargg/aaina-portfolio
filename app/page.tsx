@@ -70,17 +70,27 @@ export default function Home() {
             </Reveal>
           </div>
           <Reveal delay={150} className="order-first sm:order-none">
-            <div className="relative mx-auto h-56 w-56 shrink-0 sm:h-72 sm:w-72">
-              <div className="absolute -inset-3 rounded-[2.5rem] bg-gradient-to-br from-signal/40 to-pulse/40 opacity-60 blur-xl" />
-              <div className="relative h-full w-full overflow-hidden rounded-[2rem] border border-line">
-                <Image
-                  src="/photos/aaina.png"
-                  alt={person.name}
-                  fill
-                  sizes="(max-width: 640px) 224px, 288px"
-                  className="object-cover"
-                  priority
-                />
+            <div className="mx-auto w-56 sm:w-72">
+              <div className="relative h-56 w-56 shrink-0 sm:h-72 sm:w-72">
+                <div className="absolute -inset-3 rounded-[2.5rem] bg-gradient-to-br from-signal/40 to-pulse/40 opacity-60 blur-xl" />
+                <div className="relative h-full w-full overflow-hidden rounded-[2rem] border border-line">
+                  <Image
+                    src="/photos/aaina.png"
+                    alt={person.name}
+                    fill
+                    sizes="(max-width: 640px) 224px, 288px"
+                    className="object-cover"
+                    priority
+                  />
+                </div>
+              </div>
+              <div className="mt-4">
+                <p className="text-center font-mono text-[11px] uppercase tracking-wide text-muted">
+                  Selected for, and worked with
+                </p>
+                <div className="mt-3 flex justify-center">
+                  <AffiliationStrip />
+                </div>
               </div>
             </div>
           </Reveal>
@@ -183,17 +193,6 @@ export default function Home() {
         </Reveal>
         <Reveal delay={100} className="mt-8">
           <SubstackScroller posts={substackPosts} />
-        </Reveal>
-      </section>
-
-      <section className="border-t border-line py-12">
-        <Reveal>
-          <p className="font-mono text-xs uppercase tracking-wide text-muted">
-            Selected for, and worked with
-          </p>
-          <div className="mt-5">
-            <AffiliationStrip />
-          </div>
         </Reveal>
       </section>
     </main>
