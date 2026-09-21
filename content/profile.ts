@@ -318,6 +318,41 @@ export const press: PressFeature[] = [
   },
 ];
 
+// Moments — photos from talks, mentors, and speakers she's crossed
+// paths with, shared publicly on her own Instagram/LinkedIn.
+export type Moment = {
+  name: string;
+  role: string;
+  image: string;
+  linkedinUrl?: string;
+};
+
+export const moments: Moment[] = [
+  {
+    name: "Geoffrey Hinton",
+    role: "Nobel laureate, \"Godfather of AI\", at a UofT Technology Leadership Initiative talk",
+    image: "/photos/moments/hinton.jpg",
+    linkedinUrl: "https://lnkd.in/p/guEKK7gg",
+  },
+  {
+    name: "Leena Nair",
+    role: "Global CEO, Chanel",
+    image: "/photos/moments/leena-nair.jpg",
+    linkedinUrl: "https://lnkd.in/p/gDwTtR8V",
+  },
+  {
+    name: "Paul",
+    role: "Mentor, UofT Technology Leadership Initiative",
+    image: "/photos/moments/paul.jpg",
+    linkedinUrl: "https://lnkd.in/p/gE69HQmV",
+  },
+  {
+    name: "Mike",
+    role: "UofT Computer Science",
+    image: "/photos/moments/mike.jpg",
+  },
+];
+
 // "Fellowships" — the selective programs, and the concrete deliverable
 // each one produced.
 export type BeyondItem = {

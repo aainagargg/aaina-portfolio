@@ -1,11 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
-import { person, education, buildWork, thinkWork, beyondWork, distinctions, press, substackPosts } from "@/content/profile";
+import { person, education, buildWork, thinkWork, beyondWork, distinctions, press, substackPosts, moments } from "@/content/profile";
 import { Reveal } from "./components/Reveal";
 import { StatBand } from "./components/StatBand";
 import { DomainIcon } from "./components/DomainIcon";
 import { SubstackScroller } from "./components/SubstackScroller";
 import { AffiliationStrip } from "./components/AffiliationStrip";
+import { MomentsScroller } from "./components/MomentsScroller";
 
 const heroStats = [
   { value: 60, suffix: "k+", label: "people using systems I've shipped" },
@@ -142,6 +143,19 @@ export default function Home() {
             </div>
           </Reveal>
         )}
+      </section>
+
+      <section className="border-t border-line py-16">
+        <Reveal>
+          <h2 className="font-display text-2xl font-bold text-ink">Moments</h2>
+          <p className="mt-2 max-w-lg text-muted">
+            Privileged to be studying at UofT, where I get to learn from
+            those who inspire.
+          </p>
+        </Reveal>
+        <Reveal delay={100} className="mt-8">
+          <MomentsScroller moments={moments} />
+        </Reveal>
       </section>
 
       <section className="border-t border-line py-16">
