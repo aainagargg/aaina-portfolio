@@ -4,7 +4,6 @@ import { person, education, buildWork, thinkWork, beyondWork, distinctions, pres
 import { Reveal } from "./components/Reveal";
 import { StatBand } from "./components/StatBand";
 import { DomainIcon } from "./components/DomainIcon";
-import { MilestoneScroller } from "./components/MilestoneScroller";
 import { SubstackScroller } from "./components/SubstackScroller";
 
 const heroStats = [
@@ -85,7 +84,25 @@ export default function Home() {
             </div>
           </Reveal>
         </div>
-        <Reveal delay={300} className="mt-20 rounded-3xl border border-line bg-surface/60 bg-glow-pulse p-8 sm:p-12">
+
+        <Reveal delay={250} className="mt-12 rounded-3xl border border-signal/30 bg-surface bg-glow-signal p-6 sm:p-8">
+          <div className="flex items-center gap-2">
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-signal opacity-75" />
+              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-signal" />
+            </span>
+            <p className="font-mono text-sm font-medium text-signal">Currently</p>
+          </div>
+          <p className="mt-3 max-w-2xl text-lg text-ink/90">
+            Shipping the AI intake tool at Arcadis. Building a
+            sentience-aware LLM evaluation toolkit for Sentient Futures.
+            Just promoted to Conference Director at UofT AI. Writing on
+            Building Out Loud in between. Based in Toronto, graduating
+            spring 2027.
+          </p>
+        </Reveal>
+
+        <Reveal delay={300} className="mt-8 rounded-3xl border border-line bg-surface/60 bg-glow-pulse p-8 sm:p-12">
           <StatBand stats={heroStats} />
         </Reveal>
 
@@ -122,18 +139,6 @@ export default function Home() {
 
       <section className="border-t border-line py-16">
         <Reveal>
-          <p className="font-mono text-sm text-signal">Currently</p>
-          <p className="mt-3 max-w-xl text-lg text-ink/85">
-            Shipping the AI intake tool at Arcadis. Building a
-            sentience-aware LLM evaluation toolkit for Sentient Futures.
-            Writing on Building Out Loud in between. Based in Toronto,
-            graduating spring 2027.
-          </p>
-        </Reveal>
-      </section>
-
-      <section className="border-t border-line py-16">
-        <Reveal>
           <h2 className="font-display text-2xl font-bold text-ink">Pick a lens</h2>
           <p className="mt-2 text-muted">Four sides of the same person. Start wherever you want.</p>
         </Reveal>
@@ -155,26 +160,6 @@ export default function Home() {
             </Reveal>
           ))}
         </div>
-      </section>
-
-      <section className="border-t border-line py-16">
-        <Reveal>
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <h2 className="font-display text-2xl font-bold text-ink">Rewind</h2>
-              <p className="mt-2 max-w-lg text-muted">Most recent first. Scroll back through it.</p>
-            </div>
-            <Link
-              href="/journey"
-              className="focus-ring rounded-full border border-line px-4 py-2 text-sm font-medium text-ink transition-colors hover:border-econ/50 hover:text-econ"
-            >
-              Full record ↗
-            </Link>
-          </div>
-        </Reveal>
-        <Reveal delay={100} className="mt-8">
-          <MilestoneScroller />
-        </Reveal>
       </section>
 
       <section className="border-t border-line py-16">
