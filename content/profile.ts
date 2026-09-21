@@ -253,11 +253,37 @@ export const thinkWork: ThinkItem[] = [
     orgUrl: "https://substack.com/@buildingoutloud",
     dates: "Ongoing",
     title: "Writing: notes on shipping ML and where AI governance actually bites",
-    // TODO: replace with a real 2-3 sentence description once there are
-    // a few posts live. Right now this is a placeholder based on the
-    // handle name alone.
     description:
-      "A running notebook on building ML systems in production and the governance questions that come up once they're live. Written for people building the same things, not for an audience that's already decided how it feels about AI.",
+      "An experiment in remembering: notes on machine learning, memory, and models, written between shipping production systems and studying the governance questions those systems raise.",
+  },
+];
+
+// Real Substack posts, pulled directly from buildingoutloud.substack.com.
+export type SubstackPost = {
+  title: string;
+  url: string;
+  date: string;
+  excerpt: string;
+};
+
+export const substackPosts: SubstackPost[] = [
+  {
+    title: "Why YouTube Music's Algo Secretly Beat Spotify (Delhi Car Test)",
+    url: "https://buildingoutloud.substack.com/p/why-youtube-musics-algo-secretly",
+    date: "Jan 2026",
+    excerpt: "The other day I was driving through Delhi with a friend, windows technically down (we wish, thanks to the AQI). I complimented his playlist, a perfect mix of Punjabi bangers and chill indie.",
+  },
+  {
+    title: "Learning to Forget",
+    url: "https://buildingoutloud.substack.com/p/learning-to-forget",
+    date: "Oct 2025",
+    excerpt: "What machine unlearning taught me about intelligence.",
+  },
+  {
+    title: "Episode 3: On Memory, Models, and Stories That Aren't Ours",
+    url: "https://buildingoutloud.substack.com/p/episode-3-on-memory-models-and-stories",
+    date: "Jun 2025",
+    excerpt: "Hi, I'm Aaina and this blog is an experiment in remembering.",
   },
 ];
 
@@ -268,6 +294,7 @@ export type PressFeature = {
   date: string;
   quote: string;
   url: string;
+  image: string;
 };
 
 export const press: PressFeature[] = [
@@ -278,6 +305,7 @@ export const press: PressFeature[] = [
     quote:
       "This is a serious systems choice for long-context reasoning and inference efficiency. Sarvam isn't scaling parameters for the sake of it but making architectural choices around efficiency.",
     url: "https://epaper.financialexpress.com/m5/4130306/Delhi/MARCH-19-2026#page/4/1",
+    image: "/press/financial-express.png",
   },
   {
     publication: "Mila (Quebec AI Institute)",
@@ -286,6 +314,7 @@ export const press: PressFeature[] = [
     quote:
       "Don't wait until you feel ready. Just start.",
     url: "https://mila.quebec/en/news/three-ai4goodlab-alumni-on-belonging-courage-building-ai-for-everyone",
+    image: "/press/mila.png",
   },
 ];
 

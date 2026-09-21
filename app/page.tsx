@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { person, education, buildWork, thinkWork, beyondWork, distinctions, press } from "@/content/profile";
 import { Reveal } from "./components/Reveal";
 import { StatBand } from "./components/StatBand";
@@ -43,27 +44,46 @@ export default function Home() {
   return (
     <main id="top" className="mx-auto max-w-5xl px-6">
       <section className="pt-16 pb-24 sm:pt-24 sm:pb-32">
-        <Reveal>
-          <p className="font-mono text-sm text-muted">{person.location}</p>
-        </Reveal>
-        <Reveal delay={100}>
-          <h1 className="mt-4 font-display text-5xl font-bold leading-[0.95] tracking-tight text-ink sm:text-7xl">
-            Hi, I&rsquo;m {person.name.split(" ")[0]}.
-          </h1>
-        </Reveal>
-        <Reveal delay={200}>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink/85 sm:text-xl">
-            I&rsquo;m a Computer Science and Economics student at the{" "}
-            {education.school} who ended up chasing the same question from
-            two directions: how do you actually ship an AI system at scale,
-            and how do you know whether you{" "}
-            <em className="font-accent not-italic italic text-pulse">should</em> have
-            shipped it at all. Right now that means a seat on the AI team at{" "}
-            {buildWork[0].org}, a research fellowship with {thinkWork[0].org}, and
-            an internship at {thinkWork[1].org}, on top of selective stints
-            at Google DeepMind, Cash App, and RBC Borealis.
-          </p>
-        </Reveal>
+        <div className="grid gap-10 sm:grid-cols-[1fr_auto] sm:items-start">
+          <div>
+            <Reveal>
+              <p className="font-mono text-sm text-muted">{person.location}</p>
+            </Reveal>
+            <Reveal delay={100}>
+              <h1 className="mt-4 font-display text-5xl font-bold leading-[0.95] tracking-tight text-ink sm:text-7xl">
+                Hi, I&rsquo;m {person.name.split(" ")[0]}.
+              </h1>
+            </Reveal>
+            <Reveal delay={200}>
+              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink/85 sm:text-xl">
+                I&rsquo;m a Computer Science and Economics student at the{" "}
+                {education.school} who ended up chasing the same question from
+                two directions: how do you actually ship an AI system at scale,
+                and how do you know whether you{" "}
+                <em className="font-accent not-italic italic text-pulse">should</em> have
+                shipped it at all. Right now that means a seat on the AI team at{" "}
+                {buildWork[0].org}, a research fellowship with {thinkWork[0].org}, and
+                an internship at {thinkWork[1].org}, on top of selective stints
+                at Google DeepMind, Cash App, and RBC Borealis.
+              </p>
+            </Reveal>
+          </div>
+          <Reveal delay={150} className="order-first sm:order-none">
+            <div className="relative mx-auto h-40 w-40 shrink-0 sm:h-48 sm:w-48">
+              <div className="absolute -inset-2 rounded-[2rem] bg-gradient-to-br from-signal/40 to-pulse/40 opacity-60 blur-lg" />
+              <div className="relative h-full w-full overflow-hidden rounded-3xl border border-line">
+                <Image
+                  src="/photos/aaina.png"
+                  alt={person.name}
+                  fill
+                  sizes="192px"
+                  className="object-cover"
+                  priority
+                />
+              </div>
+            </div>
+          </Reveal>
+        </div>
         <Reveal delay={300} className="mt-20 rounded-3xl border border-line bg-surface/60 bg-glow-pulse p-8 sm:p-12">
           <StatBand stats={heroStats} />
         </Reveal>
@@ -77,11 +97,21 @@ export default function Home() {
                   href={p.url}
                   target="_blank"
                   rel="noopener"
-                  className="focus-ring group block rounded-2xl border border-line bg-surface p-5 transition-colors hover:border-pulse/40"
+                  className="focus-ring group flex gap-4 overflow-hidden rounded-2xl border border-line bg-surface p-3 transition-colors hover:border-pulse/40"
                 >
-                  <p className="font-mono text-xs text-muted">{p.publication} · {p.date}</p>
-                  <p className="mt-1 font-medium text-ink group-hover:text-pulse">{p.title} ↗</p>
-                  <p className="mt-2 text-sm italic text-ink/70">&ldquo;{p.quote}&rdquo;</p>
+                  <div className="relative h-full w-24 shrink-0 overflow-hidden rounded-xl border border-line bg-void sm:w-28">
+                    <Image
+                      src={p.image}
+                      alt={`${p.publication}: ${p.title}`}
+                      fill
+                      sizes="112px"
+                      className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="py-1 pr-2">
+                    <p className="font-mono text-xs text-muted">{p.publication} · {p.date}</p>
+                    <p className="mt-1 font-medium text-ink group-hover:text-pulse">{p.title} ↗</p>
+                  </div>
                 </a>
               ))}
             </div>

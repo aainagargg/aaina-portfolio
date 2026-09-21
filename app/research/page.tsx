@@ -1,6 +1,8 @@
-import { thinkWork, press } from "@/content/profile";
+import Image from "next/image";
+import { thinkWork, press, substackPosts } from "@/content/profile";
 import { Reveal } from "../components/Reveal";
 import { DomainIcon } from "../components/DomainIcon";
+import { SubstackScroller } from "../components/SubstackScroller";
 
 const OPEN_SOURCE_SOON = new Set(["sentient-futures", "cohumain"]);
 
@@ -64,31 +66,40 @@ export default function ResearchPage() {
 
         {writing && (
           <Reveal>
-            <article className="rounded-2xl border border-line bg-surface p-6 sm:p-8">
-              <p className="font-mono text-xs text-muted">{writing.org} · {writing.dates}</p>
-              <h2 className="mt-2 font-display text-xl font-semibold text-ink">
-                Writing: Building Out Loud
-              </h2>
-              <p className="mt-3 max-w-2xl text-sm text-ink/70">{writing.description}</p>
-            </article>
+            <h2 className="font-display text-xl font-semibold text-ink">Writing: Building Out Loud</h2>
+            <p className="mt-2 max-w-2xl text-sm text-ink/70">{writing.description}</p>
+            <div className="mt-6">
+              <SubstackScroller posts={substackPosts} />
+            </div>
           </Reveal>
         )}
 
         {press.length > 0 && (
           <Reveal>
             <h2 className="font-display text-xl font-semibold text-ink">In the press</h2>
-            <div className="mt-4 space-y-4">
+            <div className="mt-4 grid gap-5 sm:grid-cols-2">
               {press.map((p) => (
                 <a
                   key={p.url}
                   href={p.url}
                   target="_blank"
                   rel="noopener"
-                  className="focus-ring block rounded-2xl border border-line bg-surface p-5 transition-colors hover:border-pulse/40"
+                  className="focus-ring group block overflow-hidden rounded-2xl border border-line bg-surface transition-colors hover:border-pulse/40"
                 >
-                  <p className="text-xs text-muted">{p.publication} · {p.date}</p>
-                  <p className="mt-1 font-medium text-ink">{p.title} ↗</p>
-                  <p className="mt-2 text-sm italic text-ink/70">&ldquo;{p.quote}&rdquo;</p>
+                  <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-line bg-void">
+                    <Image
+                      src={p.image}
+                      alt={`${p.publication}: ${p.title}`}
+                      fill
+                      sizes="(max-width: 640px) 100vw, 50vw"
+                      className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="p-5">
+                    <p className="text-xs text-muted">{p.publication} · {p.date}</p>
+                    <p className="mt-1 font-medium text-ink group-hover:text-pulse">{p.title} ↗</p>
+                    <p className="mt-2 text-sm italic text-ink/70">&ldquo;{p.quote}&rdquo;</p>
+                  </div>
                 </a>
               ))}
             </div>
