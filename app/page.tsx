@@ -1,10 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
-import { person, education, buildWork, thinkWork, beyondWork, distinctions, press } from "@/content/profile";
+import { person, education, buildWork, thinkWork, beyondWork, distinctions, press, substackPosts } from "@/content/profile";
 import { Reveal } from "./components/Reveal";
 import { StatBand } from "./components/StatBand";
 import { DomainIcon } from "./components/DomainIcon";
-import { JourneyRoad } from "./components/JourneyRoad";
+import { MilestoneScroller } from "./components/MilestoneScroller";
+import { SubstackScroller } from "./components/SubstackScroller";
 
 const heroStats = [
   { value: 60, suffix: "k+", label: "people using systems I've shipped" },
@@ -69,14 +70,14 @@ export default function Home() {
             </Reveal>
           </div>
           <Reveal delay={150} className="order-first sm:order-none">
-            <div className="relative mx-auto h-40 w-40 shrink-0 sm:h-48 sm:w-48">
-              <div className="absolute -inset-2 rounded-[2rem] bg-gradient-to-br from-signal/40 to-pulse/40 opacity-60 blur-lg" />
-              <div className="relative h-full w-full overflow-hidden rounded-3xl border border-line">
+            <div className="relative mx-auto h-56 w-56 shrink-0 sm:h-72 sm:w-72">
+              <div className="absolute -inset-3 rounded-[2.5rem] bg-gradient-to-br from-signal/40 to-pulse/40 opacity-60 blur-xl" />
+              <div className="relative h-full w-full overflow-hidden rounded-[2rem] border border-line">
                 <Image
                   src="/photos/aaina.png"
                   alt={person.name}
                   fill
-                  sizes="192px"
+                  sizes="(max-width: 640px) 224px, 288px"
                   className="object-cover"
                   priority
                 />
@@ -158,21 +159,43 @@ export default function Home() {
 
       <section className="border-t border-line py-16">
         <Reveal>
-          <h2 className="font-display text-2xl font-bold text-ink">The road so far</h2>
-          <p className="mt-2 max-w-lg text-muted">
-            Working backward from right now to first year, one stop at a time.
-          </p>
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <h2 className="font-display text-2xl font-bold text-ink">Rewind</h2>
+              <p className="mt-2 max-w-lg text-muted">Most recent first. Scroll back through it.</p>
+            </div>
+            <Link
+              href="/journey"
+              className="focus-ring rounded-full border border-line px-4 py-2 text-sm font-medium text-ink transition-colors hover:border-econ/50 hover:text-econ"
+            >
+              Full record ↗
+            </Link>
+          </div>
         </Reveal>
-        <Reveal delay={100} className="mt-10">
-          <JourneyRoad />
+        <Reveal delay={100} className="mt-8">
+          <MilestoneScroller />
         </Reveal>
-        <Reveal delay={150} className="mt-8 text-center">
-          <Link
-            href="/journey"
-            className="focus-ring inline-block rounded-full border border-line px-5 py-2.5 text-sm font-medium text-ink transition-colors hover:border-econ/50 hover:text-econ"
-          >
-            See the full journey ↗
-          </Link>
+      </section>
+
+      <section className="border-t border-line py-16">
+        <Reveal>
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <h2 className="font-display text-2xl font-bold text-ink">Writing</h2>
+              <p className="mt-2 max-w-lg text-muted">Building Out Loud, an experiment in remembering.</p>
+            </div>
+            <a
+              href={person.links.substack}
+              target="_blank"
+              rel="noopener"
+              className="focus-ring rounded-full border border-line px-4 py-2 text-sm font-medium text-ink transition-colors hover:border-pulse/50 hover:text-pulse"
+            >
+              All posts ↗
+            </a>
+          </div>
+        </Reveal>
+        <Reveal delay={100} className="mt-8">
+          <SubstackScroller posts={substackPosts} />
         </Reveal>
       </section>
     </main>
