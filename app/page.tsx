@@ -104,15 +104,6 @@ export default function Home() {
           </p>
         </Reveal>
 
-        <Reveal delay={280} className="mt-8">
-          <p className="font-mono text-xs uppercase tracking-wide text-muted">
-            Selected for, and worked with
-          </p>
-          <div className="mt-4">
-            <AffiliationStrip />
-          </div>
-        </Reveal>
-
         <Reveal delay={300} className="mt-8 rounded-3xl border border-line bg-surface/60 bg-glow-pulse p-8 sm:p-12">
           <StatBand stats={heroStats} />
         </Reveal>
@@ -192,6 +183,17 @@ export default function Home() {
         </Reveal>
         <Reveal delay={100} className="mt-8">
           <SubstackScroller posts={substackPosts} />
+        </Reveal>
+      </section>
+
+      <section className="border-t border-line py-12">
+        <Reveal>
+          <p className="font-mono text-xs uppercase tracking-wide text-muted">
+            Selected for, and worked with
+          </p>
+          <div className="mt-5">
+            <AffiliationStrip />
+          </div>
         </Reveal>
       </section>
     </main>
