@@ -94,11 +94,10 @@ export default function Home() {
             <p className="font-mono text-sm font-medium text-signal">Currently</p>
           </div>
           <p className="mt-3 max-w-2xl text-lg text-ink/90">
-            Shipping the AI intake tool at Arcadis. Building a
-            sentience-aware LLM evaluation toolkit for Sentient Futures.
-            Just promoted to Conference Director at UofT AI. Writing on
-            Building Out Loud in between. Based in Toronto, graduating
-            spring 2027.
+            Shipping the AI intake tool at {buildWork[0].org}. Researching
+            how AI systems reason about moral status at {thinkWork[0].org}.
+            Directing the annual conference at UofT AI. Writing on Building
+            Out Loud in between. Based in Toronto, graduating spring 2027.
           </p>
         </Reveal>
 
