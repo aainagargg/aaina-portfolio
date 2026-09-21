@@ -17,23 +17,23 @@ export function MomentsScroller({ moments }: { moments: Moment[] }) {
               />
             </div>
             <div className="flex flex-1 flex-col p-4">
-              <p className="font-medium leading-tight text-ink">{m.name}</p>
+              <p className="font-medium leading-tight text-ink group-hover:text-pulse">
+                {m.name} ↗
+              </p>
               <p className="mt-1 text-xs leading-snug text-muted">{m.role}</p>
             </div>
           </div>
         );
-        return m.linkedinUrl ? (
+        return (
           <a
             key={m.name}
-            href={m.linkedinUrl}
+            href={m.profileUrl}
             target="_blank"
             rel="noopener"
             className="focus-ring block rounded-2xl"
           >
             {card}
           </a>
-        ) : (
-          <div key={m.name}>{card}</div>
         );
       })}
     </div>

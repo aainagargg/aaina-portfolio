@@ -324,32 +324,33 @@ export type Moment = {
   name: string;
   role: string;
   image: string;
-  linkedinUrl?: string;
+  profileUrl: string;
 };
 
 export const moments: Moment[] = [
   {
     name: "Geoffrey Hinton",
-    role: "Nobel laureate, \"Godfather of AI\", at a UofT Technology Leadership Initiative talk",
+    role: "Nobel laureate in Physics, \"Godfather of AI\"",
     image: "/photos/moments/hinton.jpg",
-    linkedinUrl: "https://lnkd.in/p/guEKK7gg",
+    profileUrl: "https://www.cs.toronto.edu/~hinton/",
   },
   {
     name: "Leena Nair",
     role: "Global CEO, Chanel",
     image: "/photos/moments/leena-nair.jpg",
-    linkedinUrl: "https://lnkd.in/p/gDwTtR8V",
+    profileUrl: "https://en.wikipedia.org/wiki/Leena_Nair",
   },
   {
     name: "Paul",
     role: "Mentor, UofT Technology Leadership Initiative",
     image: "/photos/moments/paul.jpg",
-    linkedinUrl: "https://lnkd.in/p/gE69HQmV",
+    profileUrl: "https://www.technologyleadershipinitiative.com",
   },
   {
     name: "Mike",
-    role: "UofT Computer Science",
+    role: "Mentor, UofT Technology Leadership Initiative",
     image: "/photos/moments/mike.jpg",
+    profileUrl: "https://www.technologyleadershipinitiative.com",
   },
 ];
 

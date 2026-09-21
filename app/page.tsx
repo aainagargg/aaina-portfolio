@@ -150,7 +150,7 @@ export default function Home() {
           <h2 className="font-display text-2xl font-bold text-ink">Moments</h2>
           <p className="mt-2 max-w-lg text-muted">
             Privileged to be studying at UofT, where I get to learn from
-            those who inspire.
+            those who inspire, and so many more along the way.
           </p>
         </Reveal>
         <Reveal delay={100} className="mt-8">
